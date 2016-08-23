@@ -1,0 +1,15 @@
+{
+  "name": "gabe",
+  "version": "1.0.0",
+  "description": "Gabe, your only friend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Otirod",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/client": "^3.5.4",
+    "slack-client": "^2.0.6"
+  }
+}
