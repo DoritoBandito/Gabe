@@ -1,0 +1,16 @@
+{
+	"session": {
+		"self": {
+			"Name": "",
+			"Id": ""
+		},
+		"team": {
+			"Id": "",
+			"Name": "",
+			"Domain": "",
+		},
+		"channels": {
+
+		}
+	}
+}
