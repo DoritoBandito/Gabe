@@ -40,7 +40,7 @@ function processGabe(split) {
 						return rolling.diceRoll(split[2]).toString();
 					}
 					else {
-						return false;
+						return null;
 					}
 				}
 			}
@@ -51,7 +51,7 @@ function processGabe(split) {
 					return rolling.numberRoll(split[2]).toString();
 				}
 				else {
-					return false;
+					return null;
 				}
 			}
 			else {
@@ -61,7 +61,7 @@ function processGabe(split) {
 					return rolling.numberRoll(split[2]).toString();
 				}
 				else {
-					return false;
+					return null;
 				}
 			}
 			break;
