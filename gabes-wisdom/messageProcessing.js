@@ -32,14 +32,39 @@ MessageProcessing.prototype.process = function(message, gabeId) {
 function processGabe(split) {
 	switch(split[1]) {
 		case "roll":
-			var gMath = new GabesMath();
-			if (gMath.isInt(split[2])) {
-				var rolling = new Rolling();
-				return rolling.numberRoll(split[2]).toString();
+			if (split[3] !== null) {
+				if (split[3] === "dice") {
+					var gMath = new GabesMath();
+					if (gMath.isInt(split[2])) {
+						var rolling = new Rolling();
+						return rolling.diceRoll(split[2]).toString();
+					}
+					else {
+						return false;
+					}
+				}
+			}
+			else if (split[3] !== "dice") {
+				var gMath = new GabesMath();
+				if (gMath.isInt(split[2])) {
+					var rolling = new Rolling();
+					return rolling.numberRoll(split[2]).toString();
+				}
+				else {
+					return false;
+				}
 			}
 			else {
-				return false;
+				var gMath = new GabesMath();
+				if (gMath.isInt(split[2])) {
+					var rolling = new Rolling();
+					return rolling.numberRoll(split[2]).toString();
+				}
+				else {
+					return false;
+				}
 			}
+			break;
 		default:
 			return null;
 			break;
