@@ -25,7 +25,7 @@ rtm.on(CLIENT_EVENTS.RTM.AUTHENTICATED, function (rtmStartData) {
 rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
 	if (messageProcess.gabeMentioned(message, gabe.self.id)) {
 		var returnMessage = messageProcess.process(message, gabe.self.id);
-		if (returnMessage !== null) {
+		if (returnMessage !== null && returnMessage !== undefined) {
 			if (returnMessage.length > 0) {
 				rtm.sendMessage(returnMessage, message.channel);
 			}
