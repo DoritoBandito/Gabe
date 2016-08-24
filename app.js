@@ -10,12 +10,15 @@ var messageProcess = new MessageProcessing();
 var rtm = new RtmClient(token);
 rtm.start();
 
+//Once authenticated, assign startData to Gabe so he knows who he is.
+rtm.on(CLIENT_EVENTS.RTM.AUTHENTICATED, function (rtmStartData) {
+	console.log(`Logged in as ${rtmStartData.self.name} of team ${rtmStartData.team.name}, but not yet connected to a channel`);
+	gabe = rtmStartData;
+});
+
+//On message received, process the message accordingly.
 rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
 	if (messageProcess.gabeMentioned(message, gabe.self.id)) {
 		rtm.sendMessage(message.text, message.channel);
 	}
-});
-rtm.on(CLIENT_EVENTS.RTM.AUTHENTICATED, function (rtmStartData) {
-	console.log(`Logged in as ${rtmStartData.self.name} of team ${rtmStartData.team.name}, but not yet connected to a channel`);
-	gabe = rtmStartData;
 });
