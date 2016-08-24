@@ -3,9 +3,14 @@ var RtmClient = require('@slack/client').RtmClient;
 var RTM_EVENTS = require('@slack/client').RTM_EVENTS;
 var CLIENT_EVENTS = require('@slack/client').CLIENT_EVENTS;
 var MessageProcessing = require('./gabes-wisdom/MessageProcessing.js');
+var GabesMath = require('./gabes-wisdom/GabesMath.js');
+var Rolling = require('./gabes-wisdom/Rolling.js');
+
 var token = process.env.API_TOKEN;
 var gabe = null;
 
+var rolling = new Rolling();
+var gMath = new GabesMath();
 var messageProcess = new MessageProcessing();
 var rtm = new RtmClient(token);
 rtm.start();
@@ -19,6 +24,14 @@ rtm.on(CLIENT_EVENTS.RTM.AUTHENTICATED, function (rtmStartData) {
 //On message received, process the message accordingly.
 rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
 	if (messageProcess.gabeMentioned(message, gabe.self.id)) {
-		rtm.sendMessage(message.text, message.channel);
+		var returnMessage = messageProcess.process(message, gabe.self.id);
+		if (returnMessage !== null) {
+			if (returnMessage.length > 0) {
+				rtm.sendMessage(returnMessage, message.channel);
+			}
+		}
+		else {
+			rtm.sendMessage("I don't understand...", message.channel);
+		}
 	}
 });
