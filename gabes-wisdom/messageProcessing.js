@@ -30,43 +30,40 @@ MessageProcessing.prototype.process = function(message, gabeId) {
 } 
 
 function processGabe(split) {
-	switch(split[1]) {
-		case "roll":
-			if (split[3] !== null) {
-				if (split[3] === "dice") {
+	switch(split.length) {
+		case 3:
+			console.log("3");
+			switch(split[1].toLowerCase()) {
+				case "roll":
 					var gMath = new GabesMath();
 					if (gMath.isInt(split[2])) {
 						var rolling = new Rolling();
-						return rolling.diceRoll(split[2]).toString();
+						return rolling.numberRoll(split[2]).toString();
 					}
 					else {
 						return null;
 					}
-				}
-			}
-			else if (split[3] !== "dice") {
-				var gMath = new GabesMath();
-				if (gMath.isInt(split[2])) {
-					var rolling = new Rolling();
-					return rolling.numberRoll(split[2]).toString();
-				}
-				else {
-					return null;
-				}
-			}
-			else {
-				var gMath = new GabesMath();
-				if (gMath.isInt(split[2])) {
-					var rolling = new Rolling();
-					return rolling.numberRoll(split[2]).toString();
-				}
-				else {
-					return null;
-				}
+					break;
 			}
 			break;
+		case 4:
+			console.log("4");
+			switch(split[1].toLowerCase()) {
+				case "roll":
+					if (split[3].toLowerCase() === "dice") {
+						var gMath = new GabesMath();
+						if (gMath.isInt(split[2])) {
+							var rolling = new Rolling();
+							return rolling.diceRoll(split[2]).toString();
+						}
+						else {
+							return null;
+						}
+					}
+					break;
+			}
 		default:
-			return null;
+			console.log("Nothing found");
 			break;
 	}
 }
