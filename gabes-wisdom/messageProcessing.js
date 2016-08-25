@@ -32,7 +32,6 @@ MessageProcessing.prototype.process = function(message, gabeId) {
 function processGabe(split) {
 	switch(split.length) {
 		case 3:
-			console.log("3");
 			switch(split[1].toLowerCase()) {
 				case "roll":
 					var gMath = new GabesMath();
@@ -47,7 +46,6 @@ function processGabe(split) {
 			}
 			break;
 		case 4:
-			console.log("4");
 			switch(split[1].toLowerCase()) {
 				case "roll":
 					if (split[3].toLowerCase() === "dice") {

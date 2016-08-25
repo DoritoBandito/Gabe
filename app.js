@@ -3,14 +3,10 @@ var RtmClient = require('@slack/client').RtmClient;
 var RTM_EVENTS = require('@slack/client').RTM_EVENTS;
 var CLIENT_EVENTS = require('@slack/client').CLIENT_EVENTS;
 var MessageProcessing = require('./gabes-wisdom/MessageProcessing.js');
-var GabesMath = require('./gabes-wisdom/GabesMath.js');
-var Rolling = require('./gabes-wisdom/Rolling.js');
 
 var token = process.env.API_TOKEN;
 var gabe = null;
 
-var rolling = new Rolling();
-var gMath = new GabesMath();
 var messageProcess = new MessageProcessing();
 var rtm = new RtmClient(token);
 rtm.start();

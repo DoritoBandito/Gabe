@@ -23,7 +23,8 @@ Rolling.prototype.diceRoll = function(numOfDice) {
 		var x = parseInt(numOfDice, 10);
 		if (x > 0) {
 			for (var i = 0; i < x; i++) {
-				diceRoll = diceRoll + " " + Math.floor((Math.random() * 6) + 1).toString();
+				var roll = Math.floor((Math.random() * 6) + 1);
+				diceRoll = toDiceEmoji(roll) + " " + diceRoll;
 			}
 			return diceRoll;
 		}
@@ -33,6 +34,32 @@ Rolling.prototype.diceRoll = function(numOfDice) {
 	}
 	else {
 		return null;
+	}
+}
+
+function toDiceEmoji(value) {
+	switch(value) {
+		case 1:
+			return ":dice_one:";
+			break;
+		case 2:
+			return ":dice_two:";
+			break;
+		case 3:
+			return ":dice_three:";
+			break;
+		case 4:
+			return ":dice_four:";
+			break;
+		case 5:
+			return ":dice_five:";
+			break;
+		case 6:
+			return ":dice_six:";
+			break;
+		default:
+			return null;
+			break;
 	}
 }
 
