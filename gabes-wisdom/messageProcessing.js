@@ -21,7 +21,7 @@ MessageProcessing.prototype.process = function(message, gabeId) {
 	var hasGabe = split[0].includes(gabeId);
 	switch(hasGabe) {
 		case true:
-			return processGabe(split);
+			return processGabe(split, message);
 			break;
 		default: 
 			return null;
@@ -29,7 +29,7 @@ MessageProcessing.prototype.process = function(message, gabeId) {
 	}
 } 
 
-function processGabe(split) {
+function processGabe(split, originalMessage) {
 	switch(split.length) {
 		case 3:
 			switch(split[1].toLowerCase()) {
@@ -61,6 +61,9 @@ function processGabe(split) {
 					break;
 			}
 		default:
+			if (originalMessage.text.includes('hello')) {
+				return "Hello.";
+			}
 			console.log("Nothing found");
 			break;
 	}
